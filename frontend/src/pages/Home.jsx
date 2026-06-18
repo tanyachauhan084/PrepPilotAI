@@ -1,5 +1,6 @@
 import React from 'react'
 import { HiSparkles } from "react-icons/hi";
+import { motion } from "motion/react";
 const Home = () => {
   return (
          <div className='min-h-screen bg-[#f3f3f3] flex flex-col'>
@@ -14,9 +15,28 @@ const Home = () => {
             </div>
           </div>
 
+           <div className='text-center mb-28'>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className='text-4xl md:text-6xl font-semibold leading-tight max-w-4xl mx-auto'
+            >
+              Practice Interviews with{" "}
+              <span className='relative inline-block'>
+                <span className='bg-green-100 text-green-600 px-5 py-1 rounded-full'>
+                  AI Intelligence
+                </span>
+              </span>
+            </motion.h1>
+          </div>
+
         </div>
       </div>
-         </div>
+
+    </div>
+
+       
 
   )
 }
