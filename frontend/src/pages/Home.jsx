@@ -131,7 +131,25 @@ const Home = () => {
                       ))
                     }
                   </div>
-        
+
+
+      
+      
+                <div className='mb-32'>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className='text-4xl font-semibold text-center mb-16'>
+                    Advanced AI{" "}
+                    <span className="text-green-600">Capabilities</span>
+      
+                  </motion.h2>
+     
+     
+   
+
+   </div>
         
                  
       </div>
