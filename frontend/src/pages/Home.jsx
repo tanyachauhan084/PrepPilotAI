@@ -55,6 +55,24 @@ const Home = () => {
   
                 </motion.button>
 
+                 
+                
+                              <motion.button
+                                onClick={() => {
+                                  if (!userData) {
+                                    setShowAuth(true)
+                                    return;
+                                  }
+                                  navigate("/history")
+                                }}
+                                whileHover={{ opacity: 0.9, scale: 1.03 }}
+                                whileTap={{ opacity: 1, scale: 0.98 }}
+                                className='border border-gray-300 px-10 py-3 rounded-full hover:bg-gray-100 transition'>
+                                View History
+                
+                              </motion.button>
+                       
+
           </div>
 
         </div>
