@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion} from "motion/react"
 import { BsRobot } from 'react-icons/bs';
-import IoSparkles from react/icons/io5;
+import {IoSparkles} from 'react-icons/io5';
 const Auth = () => {
   return (
      <div className= 'w-full min-h-screen bg-[#f3f3f3] flex items-center justify-center px-6 py-20'>
@@ -28,7 +28,13 @@ initial={{opacity:0 , y:-40}}
       
                       </span>
                   </h1>
-      
+      <p className='text-gray-500 text-center text-sm md:text-base leading-relaxed mb-8'>
+                    Sign in to start AI-powered mock interviews,
+            track your progress, and unlock detailed performance insights.
+                </p>
+    
+    
+            
    
   
 
