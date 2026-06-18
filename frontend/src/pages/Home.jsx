@@ -122,8 +122,8 @@ const Home = () => {
                 hover:border-green-500 p-10 w-80 max-w-[90%] shadow-md hover:shadow-2xl 
                 transition-all duration-300
                 ${index === 0 ? "rotate-[-4deg]" : ""}
-                ${index === 1 ? "rotate-[3deg] md:-mt-6 shadow-xl" : ""}
-                ${index === 2 ? "rotate-[-3deg]" : ""}
+                ${index === 1 ? "rotate-3 md:-mt-6 shadow-xl" : ""}
+                ${index === 2 ? "-rotate-3" : ""}
               `}>
         
                           <div className='absolute -top-8 left-1/2 -translate-x-1/2 bg-white border-2 border-green-500 text-green-600 w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg'>
