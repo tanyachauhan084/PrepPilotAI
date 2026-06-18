@@ -28,13 +28,15 @@ initial={{opacity:0 , y:-40}}
       
                       </span>
                   </h1>
-      <p className='text-gray-500 text-center text-sm md:text-base leading-relaxed mb-8'>
-                    Sign in to start AI-powered mock interviews,
-            track your progress, and unlock detailed performance insights.
-                </p>
-    
-    
             
+
+    
+      <p className='text-gray-500 text-center text-sm md:text-base leading-relaxed mb-8'>
+                Sign in to start AI-powered mock interviews,
+        track your progress, and unlock detailed performance insights.
+            </p>
+
+
    
   
 
