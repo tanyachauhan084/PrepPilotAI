@@ -29,6 +29,19 @@ const Home = () => {
                 </span>
               </span>
             </motion.h1>
+
+           
+
+  <motion.p
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className='text-gray-500 mt-6 max-w-2xl mx-auto text-lg'
+  >
+    Role-based mock interviews with smart follow-ups,
+    adaptive difficulty and real-time performance evaluation.
+  </motion.p>
+
           </div>
 
         </div>
