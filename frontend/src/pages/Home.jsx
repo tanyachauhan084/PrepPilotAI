@@ -42,11 +42,26 @@ const Home = () => {
     adaptive difficulty and real-time performance evaluation.
   </motion.p>
 
+  
+      <div className='flex flex-wrap justify-center gap-4 mt-10'>
+                <motion.button
+                  onClick={() => {
+                    navigate("/interview")
+                  }}
+                  whileHover={{ opacity: 0.9, scale: 1.03 }}
+                  whileTap={{ opacity: 1, scale: 0.98 }}
+                  className='bg-black text-white px-10 py-3 rounded-full hover:opacity-90 transition shadow-md'>
+                  Start Interview
+  
+                </motion.button>
+
           </div>
 
         </div>
       </div>
 
+    </div>
+    
     </div>
 
        
