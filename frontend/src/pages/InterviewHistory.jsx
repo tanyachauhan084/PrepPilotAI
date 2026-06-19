@@ -38,7 +38,20 @@ const InterviewHistory = () => {
             >
                 <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
 
-                    {/* Your remaining content goes here */}
+<div>
+                                        <h3 className="text-lg font-semibold text-gray-800">
+                                            {item.role}
+                                        </h3>
+
+                                        <p className="text-gray-500 text-sm mt-1">
+                                            {item.experience} • {item.mode}
+                                        </p>
+
+                                        <p className="text-xs text-gray-400 mt-2">
+                                            {new Date(item.createdAt).toLocaleDateString()}
+                                        </p>
+                                    </div>
+
 
                 </div>
             </div>
