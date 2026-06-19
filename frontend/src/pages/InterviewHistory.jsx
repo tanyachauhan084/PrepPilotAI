@@ -19,10 +19,37 @@ const InterviewHistory = () => {
                         </p>
 
                     </div>
-</div>
-              </div>
+        </div>
+
+  
+          {interviews.length === 0 ? (
+    <div className='bg-white p-10 rounded-2xl shadow text-center'>
+        <p className='text-gray-500'>
+            No interviews found. Start your first interview.
+        </p>
+    </div>
+) : (
+    <div className='grid gap-6'>
+        {interviews.map((item, index) => (
+            <div
+                key={index}
+                onClick={() => navigate(`/report/${item._id}`)}
+                className='bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100'
+            >
+                <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
+
+                    {/* Your remaining content goes here */}
+
+                </div>
             </div>
-  )
-}
+        ))}
+    </div>
+   
+)}
+
+</div>
+</div>
+  )}
+
 
 export default InterviewHistory
