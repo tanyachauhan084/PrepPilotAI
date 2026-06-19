@@ -1,4 +1,4 @@
-import react,{useState}from 'react'
+import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -59,7 +59,6 @@ const InterviewHistory = () => {
                                     </div>
 
          <div className='flex items-center gap-6'>
-
                                         <div className="text-right">
                                             <p className="text-xl font-bold text-emerald-600">
                                                 {item.finalScore || 0}/10
@@ -68,6 +67,15 @@ const InterviewHistory = () => {
                                                 Overall Score
                                             </p>
                                         </div>
+   
+                                        <span
+                                            className={`px-4 py-1 rounded-full text-xs font-medium ${item.status === "completed"
+                                                    ? "bg-emerald-100 text-emerald-700"
+                                                    : "bg-yellow-100 text-yellow-700"
+                                                }`}
+                                        >
+                                            {item.status}
+                                        </span>
 
 
                                         </div>
@@ -82,7 +90,8 @@ const InterviewHistory = () => {
 
 </div>
 </div>
-  )}
+  );
+};
 
 
 export default InterviewHistory
