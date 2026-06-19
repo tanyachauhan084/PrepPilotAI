@@ -1,6 +1,12 @@
-import React from 'react'
+import react,{useState}from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const InterviewHistory = () => {
+
+   const [interviews, setInterviews] = useState([])
+      const navigate = useNavigate()
   return (
      <div className='min-h-screen bg-linear-to-br from-gray-50 to-emerald-50 py-10' >
             <div className='w-[90vw] lg:w-[70vw] max-w-[90%] mx-auto'>
@@ -51,6 +57,20 @@ const InterviewHistory = () => {
                                             {new Date(item.createdAt).toLocaleDateString()}
                                         </p>
                                     </div>
+
+         <div className='flex items-center gap-6'>
+
+                                        <div className="text-right">
+                                            <p className="text-xl font-bold text-emerald-600">
+                                                {item.finalScore || 0}/10
+                                            </p>
+                                            <p className="text-xs text-gray-400">
+                                                Overall Score
+                                            </p>
+                                        </div>
+
+
+                                        </div>
 
 
                 </div>
