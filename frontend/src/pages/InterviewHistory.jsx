@@ -10,6 +10,15 @@ const InterviewHistory = () => {
                           onClick={() => navigate("/")}
                           className='mt-1 p-3 rounded-full bg-white shadow hover:shadow-md transition'><FaArrowLeft className='text-gray-600' /></button>
   
+          <div>
+                        <h1 className='text-3xl font-bold flex-nowrap text-gray-800'>
+                            Interview History
+                        </h1>
+                        <p className='text-gray-500 mt-2'>
+                            Track your past interviews and performance reports
+                        </p>
+
+                    </div>
 </div>
               </div>
             </div>
