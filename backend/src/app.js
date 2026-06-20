@@ -1,5 +1,5 @@
 import express from "express";
-import healthcheckroute from "./routes/healthcheck.routes";
+import healthcheckroute from "./routes/healthcheck.routes.js";
 
 const server= express();
 //built-in middlewares//
