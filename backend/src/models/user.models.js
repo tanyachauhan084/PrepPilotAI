@@ -15,14 +15,6 @@ const userSchema= new mongoose.Schema({
         uniqie:true
     },
 
-    credential:{
-
-        type:String,
-        required:true,
-        
-    }
-
-
     },
     
 {timestamps:true}
