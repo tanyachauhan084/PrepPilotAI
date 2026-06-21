@@ -15,9 +15,12 @@ const errorMiddleware= (err, req,res,next)=>{
 
    return res.status(500).json(
     new ApiReponse(
-        500,
-        "An error occured",
-        "something went wrong"
+       500,
+       "An error occured",
+       "something went wrong"
     )
    )
 }
+
+
+export default errorMiddleware;
