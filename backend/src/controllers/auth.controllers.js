@@ -1,0 +1,57 @@
+
+import User from "../models/user.models.js";
+import generateTokens from "../services/generateToken.services.js";
+import ApiError from "../utilities/api-error.js";
+import ApiReponse from "../utilities/api-response.js";
+import asyncHandler from "../utilities/async_handler.js";
+
+
+const registerUser= asyncHandler(async(req, res)=>{
+
+    const {email, name}= req.body;
+
+    const existingUser= await User.findOne({email});
+
+    if(existingUser){
+        throw new ApiError(
+            409,
+            "An error occured during authentication",
+            "User with this email id already exists inthe database, try using another emailID"
+        )
+
+
+    }
+
+
+    const createdUser= await User.create({
+        name,
+        email
+    })
+
+   
+    const generatedToken= await generateTokens(createdUser);
+
+    const cookie= {
+        httpcookie: true,
+        secure: true
+    }
+
+    
+    
+    res.status(201)
+    .cookie("geenratedToken", generatedToken)
+    .json(
+        new ApiReponse(
+        201,
+        createdUser,
+        "User successfully register in the database"
+
+        )
+    )
+        
+
+})
+
+
+
+export default registerUser;
