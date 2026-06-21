@@ -12,7 +12,7 @@ server.use(express.static("public"))
 
 server.use("/healthcheck", healthcheckroute );
 
-server.use("/auth", authroutes);
+server.use(errorMiddleware);
 
 
 export default server
