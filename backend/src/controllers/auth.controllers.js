@@ -39,7 +39,7 @@ const registerUser= asyncHandler(async(req, res)=>{
     
     
     res.status(201)
-    .cookie("geenratedToken", generatedToken)
+    .cookie("generatedToken", generateTokens)
     .json(
         new ApiReponse(
         201,
@@ -54,4 +54,20 @@ const registerUser= asyncHandler(async(req, res)=>{
 
 
 
-export default registerUser;
+const logoutUser= asyncHandler(async(req,res)=>{
+
+   await res.clearCookie("generatedToken")
+   
+   return res.status(200).json(
+    new ApiReponse(
+        200,
+        {},
+        "user successfully logged out"
+    )
+   )
+
+})
+
+
+
+export  {registerUser, logoutUser};
