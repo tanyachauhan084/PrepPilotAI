@@ -32,9 +32,8 @@ const registerUser= asyncHandler(async(req, res)=>{
 
     const options= {
         httpOnly: true,
-        secure: false
+        secure: false,
     }
-
     res.status(201)
     .cookie("generatedToken", generatedToken, options)
     .json(
