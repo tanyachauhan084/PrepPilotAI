@@ -4,6 +4,9 @@ import Home from './pages/Home'
 import Auth from './pages/Auth'
 import InterviewHistory from './pages/InterviewHistory'
 
+
+export const serverUrl= "http://localhost:8880"
+
 const App = () => {
   return (
     <Routes>

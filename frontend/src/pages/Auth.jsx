@@ -3,15 +3,23 @@ import {motion} from "motion/react"
 import { BsRobot } from 'react-icons/bs';
 import {IoSparkles} from 'react-icons/io5';
 import {FcGoogle} from 'react-icons/fc';
-import { signInWithPopup } from 'firebase/auth';
+import { linkWithCredential, signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../utils/auth';
+
+import axios from "axios"
+import { serverUrl } from '../App';
 const Auth = () => {
 
     const hangleGoogleAuth= async ()=>{
            try {
-            const response= signInWithPopup(auth, provider);
+            const response= await signInWithPopup(auth, provider);
+            const User= response.user;
+            const name= User.displayName;
+            const email= User.email
+            const result= await axios.post(serverUrl + "/auth/register", {name, email}, {withCredentials:true});
+            console.log(result.data);
            } catch (error) {
-            
+            console.log(error.response.data);
            }
     }
   return (
