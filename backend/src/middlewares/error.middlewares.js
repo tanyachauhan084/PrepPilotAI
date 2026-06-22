@@ -3,7 +3,7 @@ import ApiReponse from "../utilities/api-response.js"
 
 const errorMiddleware= (err, req,res,next)=>{
    if(err instanceof Error){
-    return res.status(err.statusCode).json(
+    return res.status(err.statusCode||500).json(
         new ApiReponse(
             err.statusCode,
             err.data,
