@@ -4,6 +4,7 @@ import authroutes from "./routes/auth.routes.js";
 import errorMiddleware from "./middlewares/error.middlewares.js";
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import userRouter from "./routes/user.routes.js";
 
 
 const server= express();
@@ -26,6 +27,10 @@ server.use(cors({
 server.use("/healthcheck", healthcheckroute );
 
 server.use("/auth", authroutes);
+
+
+
+server.use("/user", userRouter);
 
 server.use(errorMiddleware);
 
