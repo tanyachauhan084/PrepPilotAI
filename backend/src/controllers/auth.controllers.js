@@ -30,13 +30,13 @@ const registerUser= asyncHandler(async(req, res)=>{
    
     const generatedToken= await generateTokens(createdUser);
 
-    const cookie= {
-        httpcookie: true,
-        secure: true
+    const options= {
+        httpOnly: true,
+        secure: false
     }
 
     res.status(201)
-    .cookie("generatedToken", generatedToken)
+    .cookie("generatedToken", generatedToken, options)
     .json(
         new ApiReponse(
         201,
