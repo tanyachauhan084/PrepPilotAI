@@ -35,9 +35,8 @@ const registerUser= asyncHandler(async(req, res)=>{
         secure: true
     }
 
-    
     res.status(201)
-    .cookie("generatedToken", generatedToken, options)
+    .cookie("generatedToken", generatedToken)
     .json(
         new ApiReponse(
         201,
