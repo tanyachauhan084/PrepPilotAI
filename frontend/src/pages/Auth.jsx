@@ -8,8 +8,10 @@ import { auth, provider } from '../utils/auth';
 
 import axios from "axios"
 import { serverUrl } from '../App';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../redux/userSlice';
 const Auth = () => {
-
+        const dispatch= useDispatch();
     const hangleGoogleAuth= async ()=>{
            try {
             const response= await signInWithPopup(auth, provider);
@@ -17,9 +19,9 @@ const Auth = () => {
             const name= User.displayName;
             const email= User.email
             const result= await axios.post(serverUrl + "/auth/register", {name, email}, {withCredentials:true});
-            console.log(result.data.data);
+           dispatch(setUserData(result.data))
            } catch (error) {
-            console.log(error.response.data);
+            dispatch(setUserData(null));
            }
     }
   return (
