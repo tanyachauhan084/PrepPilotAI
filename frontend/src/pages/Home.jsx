@@ -10,12 +10,14 @@ import hrImg from "../assets/HR.png";
 import techImg from "../assets/tech.png";
 import confidenceImg from "../assets/confi.png";
 import creditImg from "../assets/credit.png";
+import Nav from '../components/Nav';
+
 
 
 const Home = () => {
   return (
          <div className='min-h-screen bg-[#f3f3f3] flex flex-col'>
-
+<Nav/>
  <div className='flex-1 px-6 py-20'>
         <div className='max-w-6xl mx-auto'>
 
