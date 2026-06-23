@@ -5,13 +5,19 @@ import { BsRobot, BsCoin } from 'react-icons/bs'
 import { HiOutlineLogout } from "react-icons/hi";
 import { FaUserAstronaut } from "react-icons/fa";
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
 
     const {userData} = useSelector((state)=>state.user);
-    const [showCreditPopup, setshowCreditPopup] = useState(false);
-    const [showUserPopup, setshowUserPopup] = useState(false);
+    const [showCreditPopup, setShowCreditPopup] = useState(false);
+    const [showUserPopup, setShowUserPopup] = useState(false);
+    
+
+
+
+
+    const navigate = useNavigate();
   return (
      <div className='bg-[#f3f3f3] flex justify-center px-4 pt-6'>
             <motion.div 
@@ -38,7 +44,7 @@ const Nav = () => {
                                     </button>
                 
                                     {showCreditPopup && (
-                                        <div className='absolute -right-12.5 mt-3 w-64 bg-white shadow-xl border border-gray-200 rounded-xl p-5 z-50'>
+                                        <div className='absolute -right-12 mt-3 w-64 bg-white shadow-xl border border-gray-200 rounded-xl p-5 z-50'>
                                             <p className='text-sm text-gray-600 mb-4'>Need more credits to continue interviews?</p>
                                             <button onClick={()=>navigate("/pricing")} className='w-full bg-black text-white py-2 rounded-lg text-sm'>Buy more credits</button>
                 
@@ -55,13 +61,13 @@ const Nav = () => {
                             setShowUserPopup(!showUserPopup);
                             setShowCreditPopup(false)
                         }} className='w-9 h-9 bg-black text-white rounded-full flex items-center justify-center font-semibold'>
-                            {userData ? userData?.name.slice(0,1).toUpperCase() : <FaUserAstronaut size={16}/>}
+                            {userData ? userData?.data?.name.slice(0,1).toUpperCase() : <FaUserAstronaut size={16}/>}
                             
                         </button>
     
                         {showUserPopup && (
                             <div className='absolute right-0 mt-3 w-48 bg-white shadow-xl border border-gray-200 rounded-xl p-4 z-50'>
-                                <p className='text-md text-blue-500 font-medium mb-1'>{userData?.name}</p>
+                                <p className='text-md text-blue-500 font-medium mb-1'>{userData?.data?.name}</p>
     
                                 <button onClick={()=>navigate("/history")} className='w-full text-left text-sm py-2 hover:text-black text-gray-600'>InterView History</button>
                                 <button className='w-full text-left text-sm py-2 flex items-center gap-2 text-red-500'>
