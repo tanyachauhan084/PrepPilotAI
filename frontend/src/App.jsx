@@ -21,8 +21,8 @@ const App = () => {
 
     try{
 
-      const result= await axios.get(serverUrl,+ "/user/info", {withCredentials:true});
-      console.log(result.data);
+      const result= await axios.get(serverUrl+ "/user/info", {withCredentials:true});
+      console.log(result.data.data);
     }
 
     catch(error){
