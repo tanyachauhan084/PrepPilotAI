@@ -19,8 +19,10 @@ const Auth = () => {
             const name= User.displayName;
             const email= User.email
             const result= await axios.post(serverUrl + "/auth/register", {name, email}, {withCredentials:true});
+            console.log(result.data)
            dispatch(setUserData(result.data))
            } catch (error) {
+            console.log(error.response.data);
             dispatch(setUserData(null));
            }
     }
