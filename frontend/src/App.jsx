@@ -6,6 +6,8 @@ import axios from 'axios'
 import Auth from './pages/Auth'
 import InterviewHistory from './pages/InterviewHistory'
 import { linkWithCredential } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
+import { setUserData } from './redux/userSlice'
 
 
 
@@ -15,6 +17,8 @@ export const serverUrl= "http://localhost:8880"
 
 const App = () => {
 
+
+  const dispatch= useDispatch();
  useEffect(() => {
    
   const getUser= async(req,res)=>{
@@ -22,12 +26,13 @@ const App = () => {
     try{
 
       const result= await axios.get(serverUrl+ "/user/info", {withCredentials:true});
-      console.log(result.data.data);
+     dispatch(setUserData(result.data))
     }
 
     catch(error){
 
       console.log(error.response.data);
+      dispatch(setUserData(null) );
     }
   }
  
