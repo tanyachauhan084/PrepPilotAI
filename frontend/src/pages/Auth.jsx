@@ -10,7 +10,7 @@ import axios from "axios"
 import { serverUrl } from '../App';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
-const Auth = () => {
+const Auth = ({isModel= false}) => {
         const dispatch= useDispatch();
     const hangleGoogleAuth= async ()=>{
            try {
