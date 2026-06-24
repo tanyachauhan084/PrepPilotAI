@@ -6,18 +6,32 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { FaUserAstronaut } from "react-icons/fa";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { serverUrl } from '../App';
+import { setUserData } from '../redux/userSlice';
+import axios from "axios"
+
 
 const Nav = () => {
 
     const {userData} = useSelector((state)=>state.user);
     const [showCreditPopup, setShowCreditPopup] = useState(false);
     const [showUserPopup, setShowUserPopup] = useState(false);
-    
+    const navigate= useNavigate();
+    const dispatch= useDispatch();
 
+    const handleLogout = async()=>{
+        try {
+            await axios.get(serverUrl+ "/auth/logout", {withCredentials:true});
+            dispatch(setUserData(null));
+            setShowCreditPopup(false);
+            setShowUserPopup(false);
 
-
-
-    const navigate = useNavigate();
+            navigate("/");
+        } catch (error) {
+            
+            console.log(error);
+        }
+    }
   return (
      <div className='bg-[#f3f3f3] flex justify-center px-4 pt-6'>
             <motion.div 
@@ -70,7 +84,7 @@ const Nav = () => {
                                 <p className='text-md text-blue-500 font-medium mb-1'>{userData?.data?.name}</p>
     
                                 <button onClick={()=>navigate("/history")} className='w-full text-left text-sm py-2 hover:text-black text-gray-600'>InterView History</button>
-                                <button className='w-full text-left text-sm py-2 flex items-center gap-2 text-red-500'>
+                                <button onClick={handleLogout} className='w-full text-left text-sm py-2 flex items-center gap-2 text-red-500'>
                                     <HiOutlineLogout size={16}/>
                                     Logout</button>
                             </div>
