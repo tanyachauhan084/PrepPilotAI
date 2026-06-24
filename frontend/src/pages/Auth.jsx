@@ -39,7 +39,7 @@ initial={{opacity:0 , y:-40}}
         
           className={`
         w-full 
-        ${isModel ? "max-w-md p-8 rounded-3xl" : "max-w-lg p-12 rounded-4xl"}
+        ${isModel ? "max-w-md p-8 rounded-3xl" : "max-w-lg p-12 rounded-[32px]"}
         bg-white shadow-2xl border border-gray-200
       `
 
