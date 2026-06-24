@@ -9,11 +9,11 @@ const registerUser= asyncHandler(async(req, res)=>{
 
     const {email, name}= req.body;
 
-    const existingUser= await User.findOne({email});
+    let user= await User.findOne({email});
 
-    if(!existingUser){
+    if(!user){
 
-    const createdUser= await User.create({
+     user= await User.create({
         name,
         email
     })
@@ -21,7 +21,7 @@ const registerUser= asyncHandler(async(req, res)=>{
 }
        
    
-    const generatedToken= await generateTokens(createdUser);
+    const generatedToken= await generateTokens(user);
 
     const options= {
         httpOnly: true,
@@ -34,8 +34,8 @@ const registerUser= asyncHandler(async(req, res)=>{
     .json(
         new ApiReponse(
         201,
-        createdUser,
-        "User successfully register in the database"
+        user,
+        "User logged in"
 
         )
     )
