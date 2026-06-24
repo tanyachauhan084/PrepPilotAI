@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { serverUrl } from '../App';
 import { setUserData } from '../redux/userSlice';
 import axios from "axios"
+import AuthModel from './AuthModel';
 
 
 const Nav = () => {
@@ -18,6 +19,8 @@ const Nav = () => {
     const [showUserPopup, setShowUserPopup] = useState(false);
     const navigate= useNavigate();
     const dispatch= useDispatch();
+
+    const [showAuth, setshowAuth] = useState(false);
 
     const handleLogout = async()=>{
         try {
@@ -50,6 +53,14 @@ const Nav = () => {
                   <div className='flex items-center gap-6  relative'>
                                 <div className='relative'>
                                     <button onClick={()=>{
+
+                                        
+                                        
+                                        if(!userData){
+                                            setshowAuth(true);
+
+                                            return;
+                                        }
                                         setShowCreditPopup(!showCreditPopup);
                                         setShowUserPopup(false)
                                     }} className='flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-md hover:bg-gray-200 transition'>
@@ -60,7 +71,16 @@ const Nav = () => {
                                     {showCreditPopup && (
                                         <div className='absolute -right-12 mt-3 w-64 bg-white shadow-xl border border-gray-200 rounded-xl p-5 z-50'>
                                             <p className='text-sm text-gray-600 mb-4'>Need more credits to continue interviews?</p>
-                                            <button onClick={()=>navigate("/pricing")} className='w-full bg-black text-white py-2 rounded-lg text-sm'>Buy more credits</button>
+                                            <button onClick={()=>{
+                                                
+                                                if(!userData){
+                                                    setshowAuth(true);
+                                                    return;
+                                                }
+                                                
+                                                navigate("/pricing")} 
+                                                
+                                                } className='w-full bg-black text-white py-2 rounded-lg text-sm'>Buy more credits</button>
                 
                                         </div>
                                     )}
@@ -72,6 +92,12 @@ const Nav = () => {
                         <button
                         onClick={()=>{
                             
+
+                            if(!userData){
+
+                                setshowAuth(true);
+                                return;
+                            }
                             setShowUserPopup(!showUserPopup);
                             setShowCreditPopup(false)
                         }} className='w-9 h-9 bg-black text-white rounded-full flex items-center justify-center font-semibold'>
@@ -94,6 +120,10 @@ const Nav = () => {
                 </div>
 
         </motion.div>
+
+
+{showAuth && <AuthModel onClose={()=>setshowAuth(false)}/>}
+
                   </div>
   )
 }
