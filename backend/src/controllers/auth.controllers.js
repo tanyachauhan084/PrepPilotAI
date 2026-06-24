@@ -11,22 +11,15 @@ const registerUser= asyncHandler(async(req, res)=>{
 
     const existingUser= await User.findOne({email});
 
-    if(existingUser){
-        throw new ApiError(
-            409,
-            "An error occured during authentication",
-            "User with this email id already exists inthe database, try using another emailID"
-        )
-
-
-    }
-
+    if(!existingUser){
 
     const createdUser= await User.create({
         name,
         email
     })
 
+}
+       
    
     const generatedToken= await generateTokens(createdUser);
 
@@ -49,7 +42,6 @@ const registerUser= asyncHandler(async(req, res)=>{
         
 
 })
-
 
 
 const logoutUser= asyncHandler(async(req,res)=>{
