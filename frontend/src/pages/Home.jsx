@@ -311,9 +311,15 @@ const Home = () => {
 
   
         {showAuth && <AuthModel onClose={() => setShowAuth(false)} />}
-  
-         
-  
+
+          
+
+
+
+          
+          
+
+          <Footer />
    </div>
                  
      
