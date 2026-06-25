@@ -11,10 +11,20 @@ import techImg from "../assets/tech.png";
 import confidenceImg from "../assets/confi.png";
 import creditImg from "../assets/credit.png";
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import AuthModel from '../components/AuthModel';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Home = () => {
+
+    const { userData } = useSelector((state) => state.user)
+    const [showAuth, setShowAuth] = useState(false);
+    const navigate= useNavigate();
   return (
          <div className='min-h-screen bg-[#f3f3f3] flex flex-col'>
 <Nav/>
@@ -297,6 +307,13 @@ const Home = () => {
     
             </div>
           </div>
+  
+
+  
+        {showAuth && <AuthModel onClose={() => setShowAuth(false)} />}
+  
+         
+  
    </div>
                  
      
