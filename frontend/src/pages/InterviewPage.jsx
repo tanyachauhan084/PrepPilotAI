@@ -10,7 +10,14 @@ function InterviewPage() {
     return (
     <div className='min-h-screen bg-gray-50'>
        
-       
+
+       {step===1 && (
+    <Step1SetUp
+        onStart={()=>{
+            setStep(2)
+        }}
+    />
+)}
     </div>
   )
 }
