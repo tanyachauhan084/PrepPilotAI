@@ -5,6 +5,7 @@ import errorMiddleware from "./middlewares/error.middlewares.js";
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import userRouter from "./routes/user.routes.js";
+import { interviewRouter } from "./routes/interview.routes.js";
 
 
 const server= express();
@@ -31,6 +32,10 @@ server.use("/auth", authroutes);
 
 
 server.use("/user", userRouter);
+
+
+server.use("/interview", interviewRouter);
+
 
 server.use(errorMiddleware);
 
