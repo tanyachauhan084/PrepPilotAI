@@ -88,6 +88,18 @@ const Step1SetUp = ({onStart}) => {
                                     className='w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition'
                                     onChange={(e) => setRole(e.target.value)} value={role} />
                             </div>
+  
+                          <div className='relative'>
+                              <FaBriefcase className='absolute top-4 left-4 text-gray-400' />
+  
+                              <input type='text' placeholder='Experience (e.g. 2 years)'
+                                  className='w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition'
+                                  onChange={(e) => setExperience(e.target.value)} value={experience} />
+  
+  
+  
+                          </div>
+  
         
               </div>
 
