@@ -1,5 +1,11 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+    FaUserTie,
+    FaMicrophoneAlt,
+    FaChartLine,
+} from "react-icons/fa";
 const Step1SetUp = ({onStart}) => {
   return (
     <motion.div
@@ -10,7 +16,7 @@ const Step1SetUp = ({onStart}) => {
    
                <div className='w-full max-w-6xl bg-white rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden'>
    
-    <motion.div>
+    <motion.div
                       initial={{ x: -80, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.7 }}
@@ -38,4 +44,4 @@ const Step1SetUp = ({onStart}) => {
    }
  
 
-export default Step1SetUp.
+export default Step1SetUp;
