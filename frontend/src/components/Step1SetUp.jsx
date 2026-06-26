@@ -61,7 +61,24 @@ const Step1SetUp = ({onStart}) => {
     
     
               </motion.div>
-              
+
+        
+                        <motion.div
+                            initial={{ x: 80, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.7 }}
+                            className="p-12 bg-white">
+        
+                            <h2 className='text-3xl font-bold text-gray-800 mb-8'>
+                                Interview SetUp
+                            </h2>
+        
+        
+                            <div className='space-y-6'>
+        
+              </div>
+
+      </motion.div>
                </div>
    
            </motion.div>
