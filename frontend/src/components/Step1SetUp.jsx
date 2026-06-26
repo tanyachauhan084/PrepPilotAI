@@ -1,5 +1,10 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import {
+    FaUserTie,
+    FaMicrophoneAlt,
+    FaChartLine,
+} from "react-icons/fa";
 
 const Step1SetUp = ({onStart}) => {
   return (
