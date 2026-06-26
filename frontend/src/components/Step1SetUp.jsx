@@ -1,12 +1,18 @@
-import React from 'react'
-import { motion } from "framer-motion";
+import React, { useState } from 'react'
+import { motion } from "motion/react";
 import {
     FaUserTie,
     FaMicrophoneAlt,
     FaChartLine,
     FaBriefcase
-} from "react-icons/fa";
+} from "react-icons/fa"
+
+
 const Step1SetUp = ({onStart}) => {
+
+  const [role, setRole]= useState("");
+  const [experience, setExperience]= useState("");
+  const [mode, setMode]= useState("Technical");
   return (
     <motion.div
                initial={{ opacity: 0 }}
@@ -100,7 +106,15 @@ const Step1SetUp = ({onStart}) => {
   
                           </div>
   
-        
+    <select value={mode}
+                            onChange={(e) => setMode(e.target.value)}
+                            className='w-full py-3 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition'>
+
+                            <option value="Technical">Technical Interview</option>
+                            <option value="HR">HR Interview</option>
+
+                        </select>
+
               </div>
 
       </motion.div>
