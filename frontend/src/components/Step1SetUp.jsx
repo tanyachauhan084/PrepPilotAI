@@ -14,6 +14,15 @@ const Step1SetUp = ({onStart}) => {
   const [role, setRole]= useState("");
   const [experience, setExperience]= useState("");
   const [mode, setMode]= useState("Technical");
+  const [resumeFile, setresumeFile] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const [projects, setProjects] = uSeState([]);
+  const [skills, setSkills] = useState([]);
+  const [resumeText, setResumeText] = useState("");
+  const [analysisDone, setAnalysisDone]= useState(false);
+  const [analyzing, setAnalyzing] = useState(false);
+  
+  
   return (
     <motion.div
                initial={{ opacity: 0 }}
@@ -134,6 +143,24 @@ const Step1SetUp = ({onStart}) => {
                                   <p className='text-gray-600 font-medium'>
                                       {resumeFile ? resumeFile.name : "Click to upload resume (Optional)"}
                                   </p>
+
+  
+                                  {resumeFile && (
+                                      <motion.button
+                                          whileHover={{ scale: 1.02 }}
+                                          onClick={(e) => {
+                                              e.stopPropagation();
+                                              handleUploadResume()
+                                          }}
+  
+                                          className='mt-4 bg-gray-900 text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition'>
+                                          {analyzing ? "Analyzing..." : "Analyze Resume"}
+  
+  
+  
+                                      </motion.button>)}
+  
+                          
   
 </motion.div>
 
