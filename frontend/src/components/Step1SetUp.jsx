@@ -1,11 +1,6 @@
 import React from 'react'
 import { motion } from "framer-motion";
-import { motion } from "framer-motion";
-import {
-    FaUserTie,
-    FaMicrophoneAlt,
-    FaChartLine,
-} from "react-icons/fa";
+
 const Step1SetUp = ({onStart}) => {
   return (
     <motion.div
@@ -33,8 +28,38 @@ const Step1SetUp = ({onStart}) => {
   
                       <div className='space-y-5'>
 
-              </div>
-
+    
+                            {
+                                [
+                                    {
+                                        icon: <FaUserTie className="text-green-600 text-xl" />,
+                                        text: "Choose Role & Experience",
+                                    },
+                                    {
+                                        icon: <FaMicrophoneAlt className="text-green-600 text-xl" />,
+                                        text: "Smart Voice Interview",
+                                    },
+                                    {
+                                        icon: <FaChartLine className="text-green-600 text-xl" />,
+                                        text: "Performance Analytics",
+                                    },
+                                ].map((item, index) => (
+                                    <motion.div key={index}
+                                        initial={{ y: 30, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        transition={{ delay: 0.3 + index * 0.15 }}
+                                        whileHover={{ scale: 1.03 }}
+                                        className='flex items-center space-x-4 bg-white p-4 rounded-xl shadow-sm cursor-pointer'>
+                                        {item.icon}
+                                        <span className='text-gray-700 font-medium'>{item.text}</span>
+    
+                                    </motion.div>
+                                ))
+                            }
+                        </div>
+    
+    
+    
               </motion.div>
               
                </div>
