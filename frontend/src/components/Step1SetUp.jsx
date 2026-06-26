@@ -4,8 +4,8 @@ import {
     FaUserTie,
     FaMicrophoneAlt,
     FaChartLine,
+    FaBriefcase
 } from "react-icons/fa";
-
 const Step1SetUp = ({onStart}) => {
   return (
     <motion.div
@@ -80,6 +80,14 @@ const Step1SetUp = ({onStart}) => {
         
         
                             <div className='space-y-6'>
+
+    <div className='relative'>
+                                <FaUserTie className='absolute top-4 left-4 text-gray-400' />
+    
+                                <input type='text' placeholder='Enter role'
+                                    className='w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition'
+                                    onChange={(e) => setRole(e.target.value)} value={role} />
+                            </div>
         
               </div>
 
