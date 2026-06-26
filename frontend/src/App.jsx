@@ -8,6 +8,8 @@ import InterviewHistory from './pages/InterviewHistory'
 import { linkWithCredential } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { setUserData } from './redux/userSlice'
+import InterviewPage from './pages/InterviewPage'
+
 
 
 
@@ -52,6 +54,8 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/auth' element= {<Auth/>}/>
       <Route path='/interviewhistory' element={<InterviewHistory/>}/>
+      
+<Route path='/interview' element= {<InterviewPage/>}/>
     </Routes>
   )
 
