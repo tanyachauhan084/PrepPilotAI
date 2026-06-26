@@ -16,7 +16,7 @@ const Step1SetUp = ({onStart}) => {
   const [mode, setMode]= useState("Technical");
   const [resumeFile, setresumeFile] = useState(null);
   const [loading, setLoading] = useState(false)
-  const [projects, setProjects] = uSeState([]);
+  const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [resumeText, setResumeText] = useState("");
   const [analysisDone, setAnalysisDone]= useState(false);
@@ -165,6 +165,20 @@ const Step1SetUp = ({onStart}) => {
 </motion.div>
 
                           )}
+
+    
+    
+    
+                            <motion.button
+                           
+                                disabled={!role || !experience || loading}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.95 }}
+                                className='w-full disabled:bg-gray-600 bg-green-600 hover:bg-green-700 text-white py-3 rounded-full text-lg font-semibold transition duration-300 shadow-md'>
+                                {loading ? "Staring...":"Start Interview"}
+    
+    
+                            </motion.button>
 
               </div>
 
