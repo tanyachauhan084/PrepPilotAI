@@ -8,13 +8,14 @@ import {
     FaFileUpload
 } from "react-icons/fa"
 
-
+import axios from "axios";
+import { serverUrl } from '../App';
 const Step1SetUp = ({onStart}) => {
 
   const [role, setRole]= useState("");
   const [experience, setExperience]= useState("");
   const [mode, setMode]= useState("Technical");
-  const [resumeFile, setresumeFile] = useState(null);
+  const [resumeFile, setResumeFile] = useState(null);
   const [loading, setLoading] = useState(false)
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -23,6 +24,43 @@ const Step1SetUp = ({onStart}) => {
   const [analyzing, setAnalyzing] = useState(false);
   
   
+  
+
+  const handleUploadResume= async()=>{
+
+    if(!resumeFile || analyzing){
+      return
+    }
+
+
+    setAnalyzing(true);
+
+  
+    const formdata= new FormData();
+    formdata.append("resume", resumeFile);
+
+    try {
+         const result= await axios.post(serverUrl+ "/interview/resume", formdata, {withCredentials:true})
+
+      console.log(result.data);
+
+
+
+            setRole(result.data.role || "");
+            setExperience(result.data.experience || "");
+            setProjects(result.data.projects || []);
+            setSkills(result.data.skills || []);
+            setResumeText(result.data.resumeText || "");
+            setAnalysisDone(true);
+
+            setAnalyzing(false);
+
+    } catch (error) {
+      console.log(error);
+
+       setAnalyzing(false);
+    }
+  }
   return (
     <motion.div
                initial={{ opacity: 0 }}
@@ -206,7 +244,7 @@ const Step1SetUp = ({onStart}) => {
                           )}
   
 
-  
+
                             <motion.button
                            
                                 disabled={!role || !experience || loading}
