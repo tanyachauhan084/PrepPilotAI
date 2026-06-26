@@ -38,7 +38,7 @@ export const analyzeResume= async(req,res)=>{
         resumeText += pageText+ "\n";
     }
 
-    resumeText= resumeText.replace(/\s+ /g, " ").trim();
+    resumeText= resumeText.replace(/\s+/g, " ").trim();
 
 
     const messages=[
