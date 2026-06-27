@@ -172,6 +172,38 @@ const skillsText= Array.isArray(skills) && skills.length
 const safeResume= resumeText?.trim() || "None";
 
 
+const userPrompt= `
+
+
+
+Role: ${role}
+Experience: ${experience}
+InterviewMode: ${mode}
+Projects: ${projectText}
+Skills:${skillsText}
+
+
+Resume:${safeResume}
+
+
+`;
+
+if(!userPrompt.trim()){
+
+    throw new ApiError(
+        400,
+        "An error occured",
+        "Prompt content is empty"
+    )
+}
+
+
+
+
+
+
+
+
 
 
 })
