@@ -5,6 +5,9 @@ import { askAi } from "../services/openRouter.services.js";
 import { json } from "express";
 import ApiReponse from "../utilities/api-response.js";
 import { parse } from "path";
+import asyncHandler from "../utilities/async_handler.js";
+import User from "../models/user.models.js";
+import { NONAME } from "dns";
 
 export const analyzeResume= async(req,res)=>{
 
@@ -99,3 +102,76 @@ return res.status(200).json(
     )
 )
 };
+
+
+
+
+
+
+//create interview//
+
+
+
+export const generateQuestions= asyncHandler(async(req, res)=>{
+
+
+    const {role, experience, mode, resumeText, projects, skills}= req.body;
+
+
+    role= role?.trim();
+    experience= experience?.trim();
+    mode= mode?.trim();
+
+
+
+    if(!role || !experience || !mode){
+         throw new ApiError(
+            400,
+            "An error occured",
+            "role, experience and mode are required fields"
+         )
+    }
+
+
+
+    const user= await User.findById(req.userId)
+
+
+    
+    if(!user){
+        throw new ApiError(
+            404,
+            "An error occured",
+            "user not found"
+        )
+    }
+
+
+
+    if(user.credits<50){
+        throw new ApiError(
+            400,
+            "An error occured",
+    "Not enough credits. Minimum 50 required"
+        )
+    }
+
+
+const projectText= Array.isArray(projects) && projects.lenght
+? projects.join(", ")
+: "None";
+
+
+
+const skillsText= Array.isArray(skills) && skills.length
+? skills.join(", ")
+: "None";
+
+
+
+const safeResume= resumeText?.trim() || "None";
+
+
+
+
+})
