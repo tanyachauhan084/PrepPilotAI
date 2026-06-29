@@ -8,6 +8,7 @@ import { parse } from "path";
 import asyncHandler from "../utilities/async_handler.js";
 import User from "../models/user.models.js";
 import { NONAME } from "dns";
+import Interview from "../models/interview.models.js";
 
 export const analyzeResume= async(req,res)=>{
 
@@ -273,8 +274,36 @@ if (!aiResponse || !aiResponse.trim()) {
       );
     }
 
+    user.credits -=50;
+    await user.save();
 
 
+    const interview= await Interview.create({
+        userId: user._id,
+        role,
+        experience,
+        mode,
+        resumeText: safeResume,
+        questions: questionsArray.map((q, index)=>({
+            question: q,
+            difficulty: ["easy", "easy", "medium", "medium", "hard" ][index],
+
+            timeLimit: [60,60,90,90,120][index],
+        })) 
+    })
+
+res.json({
+    interviewId: interview._id,
+    creditsLeft: user.credits,
+    userName: user.name,
+    questions: interview.questions
+});
+
+export const submitAnswer= asyncHandler(async(req,res) =>{
+
+    const {interviewId, questionIndex, answer, timeTaken}= req.body;
+
+})
 
 
 })
