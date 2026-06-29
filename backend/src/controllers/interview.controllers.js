@@ -267,9 +267,10 @@ if (!aiResponse || !aiResponse.trim()) {
 
     if (questionsArray.length === 0) {
       
-      return res.status(500).json({
-        message: "AI failed to generate questions."
-      });
+     throw new ApiError(
+        500,
+       "AI failed to generate questions."
+      );
     }
 
 
