@@ -248,5 +248,32 @@ Make questions based on the candidate’s role, experience,interviewMode, projec
 const aisResponse= await askAi(messages);
 
 
+if (!aiResponse || !aiResponse.trim()) {
+           
+      throw new ApiError(
+        500,
+        "An error occured",
+        "Ai returned empty response"
+      )
+    }
+
+
+
+     const questionsArray = aiResponse
+      .split("\n")
+      .map(q => q.trim())
+      .filter(q => q.length > 0)
+      .slice(0, 5);
+
+    if (questionsArray.length === 0) {
+      
+      return res.status(500).json({
+        message: "AI failed to generate questions."
+      });
+    }
+
+
+
+
 
 })
