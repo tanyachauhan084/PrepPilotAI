@@ -443,3 +443,103 @@ Answer: ${answer}
 
 })
 
+
+//finish interview
+export const finishInterview = asyncHandler(async(req, res)=>{
+
+
+
+    
+
+    const {interviewId}= req.body;
+
+    const interview= await Interview.findById(interviewId);
+
+    if(!interview){
+    throw new ApiError(
+            400,
+            "aAn error occured",
+            "failed to find interview"
+        )
+    }
+
+
+
+    const totalQuestions= interview.questions.length;
+
+
+
+    let totalScore=0;
+    let totalConfidence=0;
+    let totalCommunication=0;
+    let totalCorrectness=0;
+
+
+    interview.questions.forEach((q)=>{
+
+        totalScore += q.scroe ||0;
+        totalConfidence += q.confidence ||0;
+        totalCommunication += q.communication ||0;
+        totalCorrectness += q.correctness ||0;
+
+
+    })
+
+
+
+    const finalScore= totalQuestions
+    ? totalScore / totalQuestions
+    :0;
+
+
+    const avgConfidence= totalQuestions
+    ? totalConfidence / totalQuestions
+    :0;
+
+
+    const avgCommunication= totalQuestions
+    ? totalCommunication / totalQuestions
+        :0;
+
+        const avgCorrectness= totalQuestions
+        ? totalCorrectness / totalQuestions
+        :0;
+
+
+        interview.finalScore= finalScore;
+        interview.status= "completed";
+
+
+
+        await interview.save();
+
+
+
+        return res.status(200).json(
+         new ApiReponse(
+           200,
+           {
+            finalScore: Number(finalScore.toFixed(1)),
+            confidence: Number(avgConfidence.toFixed(1)),
+            communication: Number(avgcommunication.toFixed(1)),
+            correctness: Number(avgCorrectness.toFixed(1)),
+            questionWiseScore: interview.questions.map((q)=>({
+                question: q.question,
+                scroe: q.score ||0,
+                feedback: q.feedback|| "",
+                confidence: q.confidence ||0,
+                communication: q.communication ||0,
+                correctness: q.correctness ||0,
+
+            
+            }))
+
+        },
+
+        "interview completed successfully"
+
+      )
+        
+        )
+
+})
