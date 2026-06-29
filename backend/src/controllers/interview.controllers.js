@@ -413,6 +413,33 @@ Answer: ${answer}
 
     
     const aiResponse= await askAi(messages);
+
+
+
+    const parsed= JSON.parse(aiResponse);
+
+
+
+    question.answer= answer;
+    question.confidence= parsed.confidence;
+    question.communication= parsed.communication;
+    question.correctness= parsed.correctness;
+    question.score= parsed.finalScore;
+    qiestion.feedback= parsed.feedback;
+
+
+//save that //
+    await interview.save();
+    
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            {
+             feedback:  parsed.feedback
+            },
+            "feedback fetched successfully"
+        ))
 })
 
 })
+
