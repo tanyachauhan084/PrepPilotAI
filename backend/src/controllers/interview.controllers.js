@@ -303,7 +303,59 @@ export const submitAnswer= asyncHandler(async(req,res) =>{
 
     const {interviewId, questionIndex, answer, timeTaken}= req.body;
 
-})
+    const interview= await Interview.findById(interviewId)
 
+    const question= interview.questions[questionIndex]
+
+    //if no 
+
+    if(!answer){
+
+        question.score= 0;
+        question.feedback= "you did not submit an answer";
+        question.answer= "";
+
+
+        await interview.save();
+
+return res.status(200).json(
+    new ApiResponse(
+        200,
+        {
+            feedback: question.feedback
+        },
+        "Feedback fetched successfully"
+    )
+);
+
+    }
+
+        //time exceeded
+
+        if(timeTaken> question.timeLimit){
+
+            question.score=0;
+            question.feedback= "time limit exceeded. Answer not evaluated"
+            question.answer= answer;
+
+
+
+     await interview.save();
+
+
+return res.status(200).json(
+    
+    new ApiResponse(
+        200,
+        {
+            feedback: question.feedback
+        },
+        "Feedback fetched successfully"
+    ));
+
+}
+
+
+})
 
 })
