@@ -15,6 +15,12 @@ const userSchema= new mongoose.Schema({
         uniqie:true
     },
 
+
+    credit:{
+
+        type:Number,
+        default: 100
+    }
     },
     
 {timestamps:true}
