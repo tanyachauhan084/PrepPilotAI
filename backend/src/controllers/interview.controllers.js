@@ -2,15 +2,14 @@ import ApiError from "../utilities/api-error.js"
 import fs from "fs"
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs"
 import { askAi } from "../services/openRouter.services.js";
-import { json } from "express";
-import ApiReponse from "../utilities/api-response.js";
-import { parse } from "path";
+
+import ApiResponse from "../utilities/api-response.js";
+
 import asyncHandler from "../utilities/async_handler.js";
 import User from "../models/user.models.js";
-import { NONAME } from "dns";
 import Interview from "../models/interview.models.js";
 
-export const analyzeResume= async(req,res)=>{
+export const analyzeResume= asyncHandler(async(req,res)=>{
 
     if(!req.file){
         throw new ApiError(
@@ -79,9 +78,6 @@ export const analyzeResume= async(req,res)=>{
 ]
 
 
-
-
-
 const  aiResponse= await askAi(messages);
 
 const parsed= JSON.parse(aiResponse);
@@ -90,7 +86,7 @@ fs.unlinkSync(filepath)
 
 
 return res.status(200).json(
-    new ApiReponse(
+    new ApiResponse(
         200,
         {
             role: parsed.role,
@@ -102,7 +98,7 @@ return res.status(200).json(
         "data"
     )
 )
-};
+}) ;
 
 
 
@@ -113,10 +109,10 @@ return res.status(200).json(
 
 
 
-export const generateQuestions= asyncHandler(async(req, res)=>{
+export const generateQuestion= asyncHandler(async(req, res)=>{
 
 
-    const {role, experience, mode, resumeText, projects, skills}= req.body;
+    let {role, experience, mode, resumeText, projects, skills}= req.body;
 
 
     role= role?.trim();
@@ -135,7 +131,7 @@ export const generateQuestions= asyncHandler(async(req, res)=>{
 
 
 
-    const user= await User.findById(req.userId)
+    const user= await User.findById(req.id)
 
 
     
@@ -158,7 +154,7 @@ export const generateQuestions= asyncHandler(async(req, res)=>{
     }
 
 
-const projectText= Array.isArray(projects) && projects.lenght
+const projectText= Array.isArray(projects) && projects.length
 ? projects.join(", ")
 : "None";
 
@@ -173,10 +169,7 @@ const skillsText= Array.isArray(skills) && skills.length
 const safeResume= resumeText?.trim() || "None";
 
 
-const userPrompt= `
-
-
-
+const userPrompt=`
 Role: ${role}
 Experience: ${experience}
 InterviewMode: ${mode}
@@ -246,7 +239,7 @@ Make questions based on the candidate’s role, experience,interviewMode, projec
 
 
 
-const aisResponse= await askAi(messages);
+const aiResponse= await askAi(messages);
 
 
 if (!aiResponse || !aiResponse.trim()) {
@@ -292,12 +285,23 @@ if (!aiResponse || !aiResponse.trim()) {
         })) 
     })
 
-res.json({
-    interviewId: interview._id,
-    creditsLeft: user.credits,
-    userName: user.name,
-    questions: interview.questions
-});
+return res.status(200).json(
+    new ApiResponse(
+        200,
+        {
+            interviewId: interview._id,
+            creditsLeft: user.credits,
+            userName: user.name,
+            questions: interview.questions
+        },
+        "Questions generated successfully"
+    )
+);
+
+
+})
+
+
 
 export const submitAnswer= asyncHandler(async(req,res) =>{
 
@@ -333,7 +337,6 @@ return res.status(200).json(
         //time exceeded
 
         if(timeTaken> question.timeLimit){
-
             question.score=0;
             question.feedback= "time limit exceeded. Answer not evaluated"
             question.answer= answer;
@@ -416,6 +419,7 @@ Answer: ${answer}
 
 
 
+
     const parsed= JSON.parse(aiResponse);
 
 
@@ -425,7 +429,9 @@ Answer: ${answer}
     question.communication= parsed.communication;
     question.correctness= parsed.correctness;
     question.score= parsed.finalScore;
-    qiestion.feedback= parsed.feedback;
+    question.feedback= parsed.feedback;
+
+
 
 
 //save that //
@@ -441,7 +447,9 @@ Answer: ${answer}
         ))
 })
 
-})
+
+
+
 
 
 //finish interview
@@ -458,7 +466,7 @@ export const finishInterview = asyncHandler(async(req, res)=>{
     if(!interview){
     throw new ApiError(
             400,
-            "aAn error occured",
+            "An error occured",
             "failed to find interview"
         )
     }
@@ -469,6 +477,10 @@ export const finishInterview = asyncHandler(async(req, res)=>{
 
 
 
+
+
+    
+
     let totalScore=0;
     let totalConfidence=0;
     let totalCommunication=0;
@@ -477,7 +489,7 @@ export const finishInterview = asyncHandler(async(req, res)=>{
 
     interview.questions.forEach((q)=>{
 
-        totalScore += q.scroe ||0;
+        totalScore += q.score ||0;
         totalConfidence += q.confidence ||0;
         totalCommunication += q.communication ||0;
         totalCorrectness += q.correctness ||0;
@@ -516,16 +528,16 @@ export const finishInterview = asyncHandler(async(req, res)=>{
 
 
         return res.status(200).json(
-         new ApiReponse(
+         new ApiResponse(
            200,
            {
             finalScore: Number(finalScore.toFixed(1)),
             confidence: Number(avgConfidence.toFixed(1)),
-            communication: Number(avgcommunication.toFixed(1)),
+            communication: Number(avgCommunication.toFixed(1)),
             correctness: Number(avgCorrectness.toFixed(1)),
             questionWiseScore: interview.questions.map((q)=>({
                 question: q.question,
-                scroe: q.score ||0,
+                score: q.score ||0,
                 feedback: q.feedback|| "",
                 confidence: q.confidence ||0,
                 communication: q.communication ||0,
