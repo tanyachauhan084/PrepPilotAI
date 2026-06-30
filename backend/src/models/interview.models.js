@@ -81,7 +81,7 @@ status:{
     type:String,
     enum:["Incompleted", "completed"],
 
-    default:" Incompleted"
+    default:"Incompleted"
 },
 
 
