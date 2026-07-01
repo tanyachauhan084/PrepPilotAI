@@ -5,7 +5,7 @@ import Timer from './Timer'
 const Step2Interview = ({interviewData, onFinish}) => {
  
 
-  const {interviewId, questions, userName}= interviewData;
+  //const {interviewId, questions, userName}= interviewData;
  
   return (
    
