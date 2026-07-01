@@ -2,6 +2,9 @@ import React from 'react'
 import maleVideo from "../assets/videos/male-ai.mp4"
 import femaleVideo from "../assets/videos/female-ai.mp4"
 import Timer from './Timer'
+
+import {motion} from "motion/react"
+import {FaMicrophone, FaMicrophoneSlash} from "react-icons/fa";
 const Step2Interview = ({interviewData, onFinish}) => {
  
 
@@ -26,9 +29,7 @@ const Step2Interview = ({interviewData, onFinish}) => {
             />
           </div>
 
-
-
-          
+     
           {/* subtitle pending */}
        
 
@@ -61,9 +62,6 @@ const Step2Interview = ({interviewData, onFinish}) => {
                 <span className='text-xs text-gray-400'>Current Questions</span>
               </div>
 
-
-
-           
               <div>
                 <span className='text-2xl font-bold text-emerald-600'>5</span>
                 <span className='text-xs text-gray-400'>Total Questions</span>
@@ -99,13 +97,24 @@ const Step2Interview = ({interviewData, onFinish}) => {
             className="flex-1 bg-gray-100 p-4 sm:p-6 rounded-2xl resize-none outline-none border border-gray-200 focus:ring-2 focus:ring-emerald-500 transition text-gray-800" />
 
 
+
+         <div className='flex items-center gap-4 mt-6'>
+            <motion.button
+             
+              whileTap={{ scale: 0.9 }}
+              className='w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-black text-white shadow-lg'>
+        <FaMicrophone size={20} /> : <FaMicrophoneSlash size={20}/>
+            </motion.button>
+
+            </div>
+
               </div>
       
       </div>
 
 </div>    
 
- 
+
   )
 }
 
