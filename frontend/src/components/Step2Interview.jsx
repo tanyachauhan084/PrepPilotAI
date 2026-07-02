@@ -31,52 +31,45 @@ const Step2Interview = ({interviewData, onFinish}) => {
       const videoRef = useRef(null);
     
       const currentQuestion = questions[currentIndex];
+    
+
+      useEffect(()=>{
+
+const loadVoices = () => {
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return;
+
+  const maleVoice = voices.find((voice) => {
+    const name = voice.name.toLowerCase();
+    return (
+      name.includes("david") ||
+      name.includes("mark") ||
+      name.includes("alex") ||
+      name.includes("daniel") ||
+      name.includes("guy") ||
+      name.includes("male")
+    );
+  });
+
+  if (maleVoice) {
+    setSelectedVoice(maleVoice);
+    setVoiceGender("male");
+  } else {
+    // Fallback if no male voice is found
+    setSelectedVoice(voices[0]);
+    setVoiceGender("male");
+  }
+};
+
+loadVoices();
+window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
- useEffect(() => {
-     const loadVoices = () => {
-       const voices = window.speechSynthesis.getVoices();
-       if (!voices.length) return;
- 
-       // Try known female voices first
-       const femaleVoice =
-         voices.find(v =>
-           v.name.toLowerCase().includes("zira") ||
-           v.name.toLowerCase().includes("samantha") ||
-           v.name.toLowerCase().includes("female")
-         );
- 
-       if (femaleVoice) {
-         setSelectedVoice(femaleVoice);
-         setVoiceGender("female");
-         return;
-       }
- 
-       // Try known male voices
-       const maleVoice =
-         voices.find(v =>
-           v.name.toLowerCase().includes("david") ||
-           v.name.toLowerCase().includes("mark") ||
-           v.name.toLowerCase().includes("male")
-         );
- 
-       if (maleVoice) {
-         setSelectedVoice(maleVoice);
-         setVoiceGender("male");
-         return;
-       }
- 
-       // Fallback: first voice (assume female)
-       setSelectedVoice(voices[0]);
-       setVoiceGender("female");
-     };
- 
-     loadVoices();
-     window.speechSynthesis.onvoiceschanged = loadVoices;
- 
    }, [])
- 
-   const videoSource = voiceGender === "male" ? maleVideo : femaleVideo;
+
+
+
+
 
 
   /* ---------------- SPEAK FUNCTION ---------------- */
@@ -105,7 +98,7 @@ const Step2Interview = ({interviewData, onFinish}) => {
 
       utterance.onstart = () => {
         setIsAIPlaying(true);
-        stopMic()
+        // stopMic()
         videoRef.current?.play();
       };
 
@@ -117,9 +110,6 @@ const Step2Interview = ({interviewData, onFinish}) => {
 
 
 
-        if (isMicOn) {
-          startMic();
-        }
         setTimeout(() => {
           setSubtitle("");
           resolve();
@@ -181,8 +171,7 @@ const Step2Interview = ({interviewData, onFinish}) => {
         <div className='w-full lg:w-[35%] bg-white flex flex-col items-center p-6 space-y-6 border-r border-gray-200'>
           <div className='w-full max-w-md rounded-2xl overflow-hidden shadow-xl'>
             <video
-              src={videoSource}
-              key={videoSource}
+              src={maleVideo}
               ref={videoRef}
               muted
               playsInline
