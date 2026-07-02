@@ -232,13 +232,15 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
           </h2>
 
 
-         <div className='relative mb-6 bg-gray-50 p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm'>
+           {!isIntroPhase && (<div className='relative mb-6 bg-gray-50 p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm'>
             <p className='text-xs sm:text-sm text-gray-400 mb-2'>
               Question {currentIndex+1} of {questions.length}
             </p>
 
             <div className='text-base sm:text-lg font-semibold text-gray-800 leading-relaxed '>{currentQuestion?.question}</div>
-          </div>
+          </div>)
+
+        }
           
           <textarea
             placeholder="Type your answer here..."
