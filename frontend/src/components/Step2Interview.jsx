@@ -1,4 +1,4 @@
-import React, { useState , useRef} from 'react'
+import React, { useState , useRef, useEffect} from 'react'
 import maleVideo from "../assets/videos/male-ai.mp4"
 import femaleVideo from "../assets/videos/female-ai.mp4"
 import Timer from './Timer'
@@ -32,7 +32,39 @@ const Step2Interview = ({interviewData, onFinish}) => {
     
       const currentQuestion = questions[currentIndex];
     
-  
+
+      useEffect(()=>{
+const loadVoices = () => {
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return;
+
+  const maleVoice = voices.find((voice) => {
+    const name = voice.name.toLowerCase();
+    return (
+      name.includes("david") ||
+      name.includes("mark") ||
+      name.includes("alex") ||
+      name.includes("daniel") ||
+      name.includes("guy") ||
+      name.includes("male")
+    );
+  });
+
+  if (maleVoice) {
+    setSelectedVoice(maleVoice);
+    setVoiceGender("male");
+  } else {
+    // Fallback if no male voice is found
+    setSelectedVoice(voices[0]);
+    setVoiceGender("male");
+  }
+};
+
+loadVoices();
+window.speechSynthesis.onvoiceschanged = loadVoices;
+
+
+   }, [])
 
   return (
    
