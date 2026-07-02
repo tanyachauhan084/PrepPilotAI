@@ -34,7 +34,6 @@ const Step2Interview = ({interviewData, onFinish}) => {
     
 
       useEffect(()=>{
-
 const loadVoices = () => {
   const voices = window.speechSynthesis.getVoices();
   if (!voices.length) return;
@@ -66,9 +65,6 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
    }, [])
-
-
-
 
 
 
@@ -149,9 +145,9 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
         await speakText(currentQuestion.question);
 
-        if (isMicOn) {
-          startMic();
-        }
+        // if (isMicOn) {
+        //   startMic();
+        // }
       }
 
     }
