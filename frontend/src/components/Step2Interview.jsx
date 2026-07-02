@@ -32,7 +32,7 @@ const Step2Interview = ({interviewData, onFinish}) => {
     
       const currentQuestion = questions[currentIndex];
 
-      
+
  useEffect(() => {
      const loadVoices = () => {
        const voices = window.speechSynthesis.getVoices();
@@ -181,7 +181,9 @@ const Step2Interview = ({interviewData, onFinish}) => {
         <div className='w-full lg:w-[35%] bg-white flex flex-col items-center p-6 space-y-6 border-r border-gray-200'>
           <div className='w-full max-w-md rounded-2xl overflow-hidden shadow-xl'>
             <video
-              src={maleVideo}
+              src={videoSource}
+              key={videoSource}
+              ref={videoRef}
               muted
               playsInline
               preload="auto"
