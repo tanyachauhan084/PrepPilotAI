@@ -65,6 +65,60 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
    }, [])
+  /* ---------------- SPEAK FUNCTION ---------------- */
+  const speakText = (text) => {
+    return new Promise((resolve) => {
+      if (!window.speechSynthesis || !selectedVoice) {
+        resolve();
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      // Add natural pauses after commas and periods
+      const humanText = text
+        .replace(/,/g, ", ... ")
+        .replace(/\./g, ". ... ");
+
+      const utterance = new SpeechSynthesisUtterance(humanText);
+
+      utterance.voice = selectedVoice;
+
+      // Human-like pacing
+      utterance.rate = 0.92;     // slightly slower than normal
+      utterance.pitch = 1.05;    // small warmth
+      utterance.volume = 1;
+
+      utterance.onstart = () => {
+        setIsAIPlaying(true);
+        stopMic()
+        videoRef.current?.play();
+      };
+
+
+      utterance.onend = () => {
+        videoRef.current?.pause();
+        videoRef.current.currentTime = 0;
+        setIsAIPlaying(false);
+
+
+
+        if (isMicOn) {
+          startMic();
+        }
+        setTimeout(() => {
+          setSubtitle("");
+          resolve();
+        }, 300);
+      };
+
+
+      setSubtitle(text);
+
+      window.speechSynthesis.speak(utterance);
+    });
+  };
+
 
   return (
    
