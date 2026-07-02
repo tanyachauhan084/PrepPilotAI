@@ -139,12 +139,13 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
             />
           </div>
 
-     
-          {/* subtitle pending */}
-       
+             {/* subtitle */}
+          {subtitle && (
+            <div className='w-full max-w-md bg-gray-50 border border-gray-200 rounded-xl p-4 shadow-sm'>
+              <p className='text-gray-700 text-sm sm:text-base font-medium text-center leading-relaxed'>{subtitle}</p>
+            </div>
+          )}
 
-
-      
       
                 {/* timer Area */}
                 <div className='w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-md p-6 space-y-5'>
