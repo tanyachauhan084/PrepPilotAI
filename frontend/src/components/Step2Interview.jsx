@@ -152,9 +152,9 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
                     <span className='text-sm text-gray-500'>
                       Interview Status
                     </span>
-                  <span className='text-sm font-semibold text-emerald-600'>
-                      AI Speaking
-                    </span>
+                {isAIPlaying && <span className='text-sm font-semibold text-emerald-600'>
+                     {isAIPlaying? "AI Speaking" : ""}
+                    </span>}
                   </div>
       
                   <div className="h-px bg-gray-200"></div>
