@@ -106,6 +106,17 @@ const Step2Interview = ({interviewData, onFinish}) => {
         <FaMicrophone size={20} /> : <FaMicrophoneSlash size={20}/>
             </motion.button>
 
+   
+  
+              <motion.button
+            
+                whileTap={{ scale: 0.95 }}
+                className='flex-1 bg-linear-to-r from-emerald-600 to-teal-500 text-white py-3 sm:py-4 rounded-2xl shadow-lg hover:opacity-90 transition font-semibold disabled:bg-gray-500'>
+               Submit Answer
+  
+              </motion.button>
+
+    
             </div>
 
               </div>
