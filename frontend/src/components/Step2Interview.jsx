@@ -156,6 +156,36 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
   }, [selectedVoice, isIntroPhase, currentIndex])
+
+
+
+  useEffect(()=>{
+
+    if(isIntroPhase)return;
+if(!currentQuestion) return;
+
+
+const timer= setInterval(() => {
+          setTimeLeft((prev)=>{
+            if(prev<=1){
+
+              clearInterval(timer);
+              return 0;
+            }
+
+              return prev-1;
+
+          })
+}, 1000);
+
+
+
+return ()=>clearInterval(timer);
+
+
+  }, [isIntroPhase])
+
+  
   return (
    
  <div className='min-h-screen bg-linear-to-br from-emerald-50 via-white to-teal-100 flex items-center justify-center p-4 sm:p-6'>
