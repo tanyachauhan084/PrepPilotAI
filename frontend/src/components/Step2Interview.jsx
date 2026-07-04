@@ -110,7 +110,6 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
 
-        
 
         
         if (isMicOn) {
@@ -158,6 +157,10 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
         await speakText(currentQuestion.question);
 
+   
+        if (isMicOn) {
+          startMic();
+        } 
       }
 
     }
