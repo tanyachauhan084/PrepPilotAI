@@ -8,3 +8,5 @@ export const interviewRouter= express.Router();
 
 interviewRouter.post("/resume", authMiddleware, upload.single("resume"), analyzeResume);
 interviewRouter.post("/questions", authMiddleware, generateQuestion);
+interviewRouter.post("/submit-answerss", authMiddleware, submitAnswer);
+interviewRouter.post("/finish", authMiddleware, finishInterview)
