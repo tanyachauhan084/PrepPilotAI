@@ -352,7 +352,7 @@ return ()=>clearInterval(timer);
 
          <div className='flex items-center gap-4 mt-6'>
             <motion.button
-            
+             onClick= {toggleMic}
               whileTap={{ scale: 0.9 }}
               className='w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-black text-white shadow-lg'>
         <FaMicrophone size={20} /> : <FaMicrophoneSlash size={20}/>
