@@ -183,7 +183,7 @@ const timer= setInterval(() => {
 return ()=>clearInterval(timer);
 
 
-  }, [isIntroPhase])
+  }, [isIntroPhase, currentIndex])
 
 
   return (
@@ -274,6 +274,8 @@ return ()=>clearInterval(timer);
           
           <textarea
             placeholder="Type your answer here..."
+            onChange={(e)=>setAnswer(e.target.value)}
+            value={answer}
             className="flex-1 bg-gray-100 p-4 sm:p-6 rounded-2xl resize-none outline-none border border-gray-200 focus:ring-2 focus:ring-emerald-500 transition text-gray-800" />
 
 
