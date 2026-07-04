@@ -272,7 +272,7 @@ return ()=>clearInterval(timer);
 
 
 
-    
+
     const submitAnswer=  async()=>{
 
       if(!isSubmitting){
@@ -411,10 +411,11 @@ return ()=>clearInterval(timer);
    
   
               <motion.button
-            
+            onClick= {submitAnswer}
+            disabled={isSubmitting}
                 whileTap={{ scale: 0.95 }}
                 className='flex-1 bg-linear-to-r from-emerald-600 to-teal-500 text-white py-3 sm:py-4 rounded-2xl shadow-lg hover:opacity-90 transition font-semibold disabled:bg-gray-500'>
-               Submit Answer
+               {isSubmitting? "Submitting": "Submit Answer"}
   
               </motion.button>
 
