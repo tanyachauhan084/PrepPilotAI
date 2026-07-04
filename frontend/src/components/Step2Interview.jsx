@@ -5,6 +5,7 @@ import Timer from './Timer'
 
 import {motion} from "motion/react"
 import {FaMicrophone, FaMicrophoneSlash} from "react-icons/fa";
+import { serverUrl } from '../App'
 const Step2Interview = ({interviewData, onFinish}) => {
 
 
@@ -269,6 +270,42 @@ return ()=>clearInterval(timer);
   
     };
 
+
+
+    
+    const submitAnswer=  async()=>{
+
+      if(!isSubmitting){
+        return;
+      }
+
+      stopMic();
+      setIsSubmitting(true);
+
+
+      try {
+        const reuslt= await axios.post(serverUrl+ "/interview/submit-answerss", {  
+
+          interviewId,
+          questionIndex:currentIndex,
+          answer,
+          timeTaken:
+
+          currentQuestion.timeLimit=timeLeft
+        },  {withCredentials: true});
+
+
+
+        setFeedback(result.data.data.feedback);
+        speakText(result.data.data.feedback);
+        setIsSubmitting(false);
+      } catch (error) {
+        
+        setIsSubmitting(false);
+      }
+
+    }
+  
   return (
    
  <div className='min-h-screen bg-linear-to-br from-emerald-50 via-white to-teal-100 flex items-center justify-center p-4 sm:p-6'>
