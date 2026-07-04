@@ -185,6 +185,29 @@ return ()=>clearInterval(timer);
 
   }, [isIntroPhase, currentIndex])
 
+  
+
+
+
+  useEffect(() => {
+    if (!("webkitSpeechRecognition" in window)) return;
+
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript =
+        event.results[event.results.length - 1][0].transcript;
+
+      setAnswer((prev) => prev + " " + transcript);
+    };
+
+    recognitionRef.current = recognition;
+
+  }, []);
+
 
   return (
    
