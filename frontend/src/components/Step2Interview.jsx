@@ -233,6 +233,29 @@ return ()=>clearInterval(timer);
     }
 
 
+    
+    
+
+    
+
+
+
+    const toggleMic=()=>{
+      if(isMicOn){
+        stopMic();
+      }
+
+      else{
+        startMic();
+      }
+
+
+
+      setIsMicOn(!isMicOn);
+    
+  
+    };
+
   return (
    
  <div className='min-h-screen bg-linear-to-br from-emerald-50 via-white to-teal-100 flex items-center justify-center p-4 sm:p-6'>
@@ -329,7 +352,7 @@ return ()=>clearInterval(timer);
 
          <div className='flex items-center gap-4 mt-6'>
             <motion.button
-             
+            
               whileTap={{ scale: 0.9 }}
               className='w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-black text-white shadow-lg'>
         <FaMicrophone size={20} /> : <FaMicrophoneSlash size={20}/>
