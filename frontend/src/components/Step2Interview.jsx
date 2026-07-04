@@ -94,7 +94,7 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
       utterance.onstart = () => {
         setIsAIPlaying(true);
-        // stopMic()
+        stopMic()
         videoRef.current?.play();
       };
 
@@ -106,6 +106,19 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
 
 
+
+
+
+
+        
+
+        
+        if (isMicOn) {
+          startMic();
+        } 
+
+
+      
         setTimeout(() => {
           setSubtitle("");
           resolve();
@@ -145,9 +158,6 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
         await speakText(currentQuestion.question);
 
-        // if (isMicOn) {
-        //   startMic();
-        // }
       }
 
     }
