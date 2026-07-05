@@ -6,6 +6,10 @@ import Timer from './Timer'
 import {motion} from "motion/react"
 import {FaMicrophone, FaMicrophoneSlash} from "react-icons/fa";
 import { serverUrl } from '../App'
+
+import axios from "axios"
+import { ServerUrl } from '../App'
+import { BsArrowRight } from 'react-icons/bs'
 const Step2Interview = ({interviewData, onFinish}) => {
 
 
@@ -177,7 +181,7 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
     if(isIntroPhase)return;
 if(!currentQuestion) return;
-if(isSubmitting)return;
+
 
 const timer= setInterval(() => {
           setTimeLeft((prev)=>{
@@ -400,7 +404,7 @@ return ()=>clearInterval(timer);
 
 
 
-         <div className='flex items-center gap-4 mt-6'>
+        {feedback ? <div className='flex items-center gap-4 mt-6'>
             <motion.button
              onClick= {toggleMic}
               whileTap={{ scale: 0.9 }}
@@ -420,7 +424,30 @@ return ()=>clearInterval(timer);
               </motion.button>
 
     
-            </div>
+            </div>:
+           
+        (
+                <motion.div 
+                 initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                className='mt-6 bg-emerald-50 border border-emerald-200 p-5 rounded-2xl shadow-sm'>
+                  <p className='text-emerald-700 font-medium mb-4'>{feedback}</p>
+    
+                  <button
+                  onClick={handleNext}
+    
+                   className='w-full bg-linear-to-r from-emerald-600 to-teal-500 text-white py-3 rounded-xl shadow-md hover:opacity-90 transition flex items-center justify-center gap-1'>
+                    Next Question <BsArrowRight size={18}/>
+                  </button>
+    
+                </motion.div>
+              )}
+            
+          
+            
+
+            
+
               </div>
       
       </div>
