@@ -177,7 +177,7 @@ window.speechSynthesis.onvoiceschanged = loadVoices;
 
     if(isIntroPhase)return;
 if(!currentQuestion) return;
-
+if(isSubmitting)return;
 
 const timer= setInterval(() => {
           setTimeLeft((prev)=>{
@@ -197,7 +197,7 @@ const timer= setInterval(() => {
 return ()=>clearInterval(timer);
 
 
-  }, [isIntroPhase, currentIndex])
+  }, [isIntroPhase, currentIndex, isSubmitting])
 
   
 
@@ -421,7 +421,6 @@ return ()=>clearInterval(timer);
 
     
             </div>
-
               </div>
       
       </div>
