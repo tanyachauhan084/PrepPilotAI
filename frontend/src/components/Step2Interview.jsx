@@ -309,6 +309,34 @@ return ()=>clearInterval(timer);
       }
 
     }
+
+    //handle answers
+    const handleNext= async ()=>{
+
+
+setAnswer("");
+setFeedback("");
+
+if(currentIndex +1 >= questions.length)  {
+
+  finishInterview();
+
+  return;
+}
+
+
+
+await speakText("Alright, let's move to the next question.");
+
+
+
+setCurrentIndex(currentIndex+1);
+
+setTimeout(() => {
+      if(isMicOn) startMic();
+}, 500);
+
+    }
   
   return (
    
