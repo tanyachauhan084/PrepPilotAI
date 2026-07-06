@@ -9,6 +9,7 @@ import { linkWithCredential } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { setUserData } from './redux/userSlice'
 import InterviewPage from './pages/InterviewPage'
+import InterviewReport from './pages/InterviewReport'
 
 
 
@@ -56,6 +57,14 @@ const App = () => {
       <Route path='/interviewhistory' element={<InterviewHistory/>}/>
       
 <Route path='/interview' element= {<InterviewPage/>}/>
+
+ <Route path='/history' element={<InterviewHistory/>}/>
+{/* 
+<Route path='/pricing' element={<Pricing/>}/> */} 
+
+<Route path='/report/:id' element={<InterviewReport/>}/>
+
+
     </Routes>
   )
 
