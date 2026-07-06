@@ -1,6 +1,6 @@
 import express from "express";
 import { upload } from "../middlewares/multer.middlewares.js";
-import { analyzeResume, finishInterview,  generateQuestion,  submitAnswer } from "../controllers/interview.controllers.js";
+import { analyzeResume, finishInterview,  generateQuestion,  getInterviewReport,  getMyInterviews,  submitAnswer } from "../controllers/interview.controllers.js";
 import authMiddleware from "../middlewares/auth.middlewares.js";
 
 
@@ -10,3 +10,5 @@ interviewRouter.post("/resume", authMiddleware, upload.single("resume"), analyze
 interviewRouter.post("/questions", authMiddleware, generateQuestion);
 interviewRouter.post("/submit-answerss", authMiddleware, submitAnswer);
 interviewRouter.post("/finish", authMiddleware, finishInterview)
+
+interviewRouter.get("/get-interview", authMiddleware, getMyInterviews)
