@@ -558,7 +558,7 @@ export const finishInterview = asyncHandler(async(req, res)=>{
 
 
 
-export const getMyIntervirews= asyncHandler(async(req, res)=>{
+export const getMyInterviews= asyncHandler(async(req, res)=>{
 
         const interviews= await Interview.findOne({userId:req.id})
         .sort({createdAt: -1})
