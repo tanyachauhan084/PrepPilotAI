@@ -573,4 +573,68 @@ export const getMyIntervirews= asyncHandler(async(req, res)=>{
                 "Interview found"
             )
         )
-})
+
+    })
+
+
+    export const getInterviewReport= asyncHandler(async(req, res)=>{
+
+        const interview= await Interview.findById(req.param.id)
+
+    
+    
+        if(!interview){
+            throw new ApiError(
+                404,
+                "An error occured",
+                "Interview not found"
+            )
+
+        }
+
+
+
+        const totalQuestions= interview.questions.length;
+
+     
+        let totalConfidence=0;
+        let totalConfidence=0;
+        let totalCorrectness=0;
+
+
+        interview.questions.forEach((q)=>{
+
+       
+            totalConfidence += q.confidence ||0;
+            totalCommunication += q.communication ||0;
+
+            totalCorrectness += q.correctness ||0;
+        });;
+
+
+        const avgConfidence= totalQuestions
+        ? totalConfidence /totalQuestions
+        : 0;
+
+        const avgCorrectness= totalQuestions
+        ? totalCorrectness / totalQuestions
+        : 0;
+
+
+        return res.status(200).json(
+            new ApiResponse(
+
+                200,
+                {
+                    finalScore: interview.finalScore,
+                    confidence: Number(avgConfidence.toFixed(1)),
+                    communication: Number(avgCommunication.toFixed(1)),
+                    correctness: Number(avgCorrectness.toFixed(1)),
+                    questionWiseScore: interview.questions
+    },
+                 "Interview Fetched"
+
+)
+        )
+
+        });
