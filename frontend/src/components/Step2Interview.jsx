@@ -201,7 +201,7 @@ const timer= setInterval(() => {
 return ()=>clearInterval(timer);
 
 
-  }, [isIntroPhase, currentIndex, isSubmitting])
+  }, [isIntroPhase, currentIndex])
 
   
 
