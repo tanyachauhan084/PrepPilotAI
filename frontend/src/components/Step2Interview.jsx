@@ -334,10 +334,69 @@ setCurrentIndex(currentIndex+1);
 
 setTimeout(() => {
       if(isMicOn) startMic();
-}, 500);
+}, 500)}
 
-    }
+
+
+const  finishInterview= async()=>{
+
+
+
+  stopMic()
+
+  setIsMicOn(false);
+try {
   
+
+
+  const result= await axios.post(serverUrl+ "/interview/finish", {interviewId}, {withCredentials: true  })
+
+
+  console.log(result.data.data);
+  onFinish(result.data.data);
+} catch (error) {
+  
+  console.log(result.data.error);
+}
+
+
+}
+
+
+
+useEffect(()=>{
+
+  if(isIntroPhase)return;
+  if(!currentQuestion)return;
+
+  if(timeLeft ===0 && !isSubmitting && !feedback)  {
+
+    submitAnswer();
+
+
+  }
+
+
+}, [timeLeft])
+
+
+
+useEffect(()=>{
+
+  return ()=>{
+
+    if(recognitionRef.current){
+
+      recognitionRef.current.stop();
+
+      recognitionRef.current.abort();
+    }
+
+
+
+    window.speechSynthesis.cancel();
+  }
+}, [])
   return (
    
  <div className='min-h-screen bg-linear-to-br from-emerald-50 via-white to-teal-100 flex items-center justify-center p-4 sm:p-6'>
