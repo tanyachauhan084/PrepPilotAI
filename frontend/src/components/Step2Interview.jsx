@@ -300,7 +300,7 @@ return ()=>clearInterval(timer);
           answer,
           timeTaken:
 
-          currentQuestion.timeLimit=timeLeft
+          currentQuestion.timeLimit-timeLeft
         },  {withCredentials: true});
 
 
