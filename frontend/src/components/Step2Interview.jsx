@@ -301,7 +301,7 @@ return ()=>clearInterval(timer);
 
 
         setFeedback(result.data.data.feedback);
-        speakText(result.data.data.feedback);
+      await speakText(result.data.data.feedback);
         setIsSubmitting(false);
       } catch (error) {
         
