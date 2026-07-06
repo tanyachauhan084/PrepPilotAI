@@ -25,7 +25,7 @@ try{
 
 catch{
 
-    console.log(result.response?.error)
+    console.log(error.response?.data)
 }
  }
 
