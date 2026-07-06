@@ -490,7 +490,8 @@ useEffect(()=>{
 
 
 
-        {feedback ? <div className='flex items-center gap-4 mt-6'>
+        
+{!feedback ? <div className='flex items-center gap-4 mt-6'>
             <motion.button
              onClick= {toggleMic}
               whileTap={{ scale: 0.9 }}
