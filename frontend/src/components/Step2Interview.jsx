@@ -8,7 +8,6 @@ import {FaMicrophone, FaMicrophoneSlash} from "react-icons/fa";
 import { serverUrl } from '../App'
 
 import axios from "axios"
-import { ServerUrl } from '../App'
 import { BsArrowRight } from 'react-icons/bs'
 const Step2Interview = ({interviewData, onFinish}) => {
 
@@ -279,7 +278,7 @@ return ()=>clearInterval(timer);
 
     const submitAnswer=  async()=>{
 
-      if(!isSubmitting){
+      if(isSubmitting){
         return;
       }
 
@@ -288,7 +287,7 @@ return ()=>clearInterval(timer);
 
 
       try {
-        const reuslt= await axios.post(serverUrl+ "/interview/submit-answerss", {  
+        const result= await axios.post(serverUrl+ "/interview/submit-answerss", {  
 
           interviewId,
           questionIndex:currentIndex,
