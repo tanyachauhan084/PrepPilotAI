@@ -555,3 +555,22 @@ export const finishInterview = asyncHandler(async(req, res)=>{
         )
 
 })
+
+
+
+export const getMyIntervirews= asyncHandler(async(req, res)=>{
+
+        const interviews= await Interview.findOne({userId:req.id})
+        .sort({createdAt: -1})
+        .select("role experience mode finalScore status createdAt");
+
+       
+        
+        return res.status(200).json(
+            new ApiResponse(
+                200,
+                interviews,
+                "Interview found"
+            )
+        )
+})
