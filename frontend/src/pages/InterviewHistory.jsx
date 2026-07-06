@@ -1,12 +1,40 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa";
+import { serverUrl } from '../App';
 
+
+import axios from "axios";
 
 const InterviewHistory = () => {
 
    const [interviews, setInterviews] = useState([])
       const navigate = useNavigate()
+
+      useEffect(()=>{
+
+        const getMyinterviews= async()=>{
+
+        
+try{
+        const result= await axios.get(serverUrl + "/interview/get-interview", {withCredentials: true})
+
+        console.log(result.data.data);
+        setInterviews(result.data.data);
+}
+
+catch{
+
+    console.log(result.response?.error)
+}
+ }
+
+        getMyinterviews();
+      }, [])
+
+
+
+    
   return (
      <div className='min-h-screen bg-linear-to-br from-gray-50 to-emerald-50 py-10' >
             <div className='w-[90vw] lg:w-[70vw] max-w-[90%] mx-auto'>
