@@ -12,3 +12,4 @@ interviewRouter.post("/submit-answerss", authMiddleware, submitAnswer);
 interviewRouter.post("/finish", authMiddleware, finishInterview)
 
 interviewRouter.get("/get-interview", authMiddleware, getMyInterviews)
+interviewRouter.get("/report/:id", authMiddleware, getInterviewReport)
