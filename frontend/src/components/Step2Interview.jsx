@@ -203,6 +203,12 @@ return ()=>clearInterval(timer);
   }, [isIntroPhase, currentIndex])
 
   
+  useEffect(()=>{
+
+    if(!isIntroPhase && currentQuestion){
+      setTimeLeft(currentQuestion.timeLeft ||  60);
+    }
+  },  [currentIndex]);
 
 
 
