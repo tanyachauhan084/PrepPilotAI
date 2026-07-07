@@ -36,6 +36,20 @@ const questionScroeData = questionWiseScore.map((score, index)=>({
     { label: "Correctness", value: correctness },
   ];
 
+  let performanceText = "";
+  let shortTagline = "";
+
+  if (finalScore >= 8) {
+    performanceText = "Ready for job opportunities.";
+    shortTagline = "Excellent clarity and structured responses.";
+  } else if (finalScore >= 5) {
+    performanceText = "Needs minor improvement before interviews.";
+    shortTagline = "Good foundation, refine articulation.";
+  } else {
+    performanceText = "Significant improvement required.";
+    shortTagline = "Work on clarity and confidence.";
+  }
+
   
 
   return (
