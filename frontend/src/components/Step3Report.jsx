@@ -1,4 +1,10 @@
 import React from 'react'
+
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { motion } from "motion/react"
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,9 +15,17 @@ import {
   Tooltip,
 } from "recharts";
 
+import jsPDF from "jspdf"
+import autoTable from "jspdf-autotable"
+
 
 const Step3Report = ({report}) => {
 
+  const navigate= useNavigate()
+
+
+
+  
    if (!report) {
     return (
       <div className="min-h-screen flex items-center justify-center">
