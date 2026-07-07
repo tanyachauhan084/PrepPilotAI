@@ -13,11 +13,14 @@ import creditImg from "../assets/credit.png";
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
+
+
+
+import { useNavigate} from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import AuthModel from '../components/AuthModel';
-import { useNavigate } from 'react-router-dom';
-
 
 
 const Home = () => {
@@ -74,6 +77,9 @@ const Home = () => {
                         setShowAuth(true);
                         return;
                       }
+                      
+
+                       navigate("/interview")
                   }
                   }
                   whileHover={{ opacity: 0.9, scale: 1.03 }}
