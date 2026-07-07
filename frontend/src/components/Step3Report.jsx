@@ -194,9 +194,48 @@ const questionScoreData = questionWiseScore.map((score, index)=>({
       </div>
 
 
-    
-      </div>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8'>
 
+        <div className='space-y-6'>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 text-center">
+
+            <h3 className="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">
+              Overall Performance
+            </h3>
+            <div className='relative w-20 h-20 sm:w-25 sm:h-25 mx-auto'>
+              <CircularProgressbar
+                value={percentage}
+                text={`${score}/10`}
+                styles={buildStyles({
+                  textSize: "18px",
+                  pathColor: "#10b981",
+                  textColor: "#ef4444",
+                  trailColor: "#e5e7eb",
+                })}
+              />
+            </div>
+
+            <p className="text-gray-400 mt-3 text-xs sm:text-sm">
+              Out of 10
+            </p>
+
+            <div className="mt-4">
+              <p className="font-semibold text-gray-800 text-sm sm:text-base">
+                {performanceText}
+              </p>
+              <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                {shortTagline}
+              </p>
+            </div>
+          </motion.div>
+
+</div>
+    </div>
+
+  </div>
   )
 }
 
