@@ -80,7 +80,62 @@ const questionScoreData = questionWiseScore.map((score, index)=>({
 
   currentY += 15;
 
-}
+  // ================= FINAL SCORE BOX =================
+  doc.setFillColor(240, 253, 244);
+  doc.roundedRect(margin, currentY, contentWidth, 20, 4, 4, "F");
+
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0);
+  doc.text(
+    `Final Score: ${finalScore}/10`,
+    pageWidth / 2,
+    currentY + 12,
+    { align: "center" }
+  );
+
+  currentY += 30;
+
+  // ================= SKILLS BOX =================
+  doc.setFillColor(249, 250, 251);
+  doc.roundedRect(margin, currentY, contentWidth, 30, 4, 4, "F");
+
+  doc.setFontSize(12);
+
+  doc.text(`Confidence: ${confidence}`, margin + 10, currentY + 10);
+  doc.text(`Communication: ${communication}`, margin + 10, currentY + 18);
+  doc.text(`Correctness: ${correctness}`, margin + 10, currentY + 26);
+
+  currentY += 45;
+
+  // ================= ADVICE =================
+  let advice = "";
+
+  if (finalScore >= 8) {
+    advice =
+      "Excellent performance. Maintain confidence and structure. Continue refining clarity and supporting answers with strong real-world examples.";
+  } else if (finalScore >= 5) {
+    advice =
+      "Good foundation shown. Improve clarity and structure. Practice delivering concise, confident answers with stronger supporting examples.";
+  } else {
+    advice =
+      "Significant improvement required. Focus on structured thinking, clarity, and confident delivery. Practice answering aloud regularly.";
+  }
+
+  doc.setFillColor(255, 255, 255);
+  doc.setDrawColor(220);
+  doc.roundedRect(margin, currentY, contentWidth, 35, 4, 4);
+
+  doc.setFont("helvetica", "bold");
+  doc.text("Professional Advice", margin + 10, currentY + 10);
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+
+  const splitAdvice = doc.splitTextToSize(advice, contentWidth - 20);
+  doc.text(splitAdvice, margin + 10, currentY + 20);
+
+  currentY += 50;
+    }
   return (
     <div>
 
