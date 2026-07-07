@@ -560,7 +560,7 @@ export const finishInterview = asyncHandler(async(req, res)=>{
 
 export const getMyInterviews= asyncHandler(async(req, res)=>{
 
-        const interviews= await Interview.findOne({userId:req.id})
+        const interviews= await Interview.find({userId:req.id})
         .sort({createdAt: -1})
         .select("role experience mode finalScore status createdAt");
 
@@ -579,7 +579,7 @@ export const getMyInterviews= asyncHandler(async(req, res)=>{
 
     export const getInterviewReport= asyncHandler(async(req, res)=>{
 
-        const interview= await Interview.findById(req.param.id)
+        const interview= await Interview.findById(req.params.id)
 
     
     
@@ -598,7 +598,7 @@ export const getMyInterviews= asyncHandler(async(req, res)=>{
 
      
         let totalConfidence=0;
-        let totalConfidence=0;
+        let totalCommunication=0;
         let totalCorrectness=0;
 
 
@@ -610,6 +610,10 @@ export const getMyInterviews= asyncHandler(async(req, res)=>{
 
             totalCorrectness += q.correctness ||0;
         });;
+
+        const avgCommunication= totalQuestions
+        ? totalCommunication / totalQuestions
+        : 0;
 
 
         const avgConfidence= totalQuestions
