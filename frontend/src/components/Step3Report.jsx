@@ -63,11 +63,24 @@ const questionScoreData = questionWiseScore.map((score, index)=>({
     const contentWidth = pageWidth - margin * 2;
     
     let currentY = 25;
-    }
     
-    
+ // ================= TITLE =================
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.setTextColor(34, 197, 94);
+  doc.text("AI Interview Performance Report", pageWidth / 2, currentY, {
+    align: "center",
+  });
 
-    
+  currentY += 5;
+
+  // underline
+  doc.setDrawColor(34, 197, 94);
+  doc.line(margin, currentY + 2, pageWidth - margin, currentY + 2);
+
+  currentY += 15;
+
+}
   return (
     <div>
 
