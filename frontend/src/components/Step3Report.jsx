@@ -54,8 +54,20 @@ const questionScoreData = questionWiseScore.map((score, index)=>({
     const score = finalScore;
     const percentage = (score / 10) * 100;
   
+  
+    const downloadPDF = () => {
+    const doc = new jsPDF("p", "mm", "a4");
+  
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 20;
+    const contentWidth = pageWidth - margin * 2;
+    
+    let currentY = 25;
+    }
+    
+    
 
-
+    
   return (
     <div>
 
