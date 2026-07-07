@@ -51,6 +51,10 @@ const questionScroeData = questionWiseScore.map((score, index)=>({
   }
 
   
+    const score = finalScore;
+    const percentage = (score / 10) * 100;
+  
+
 
   return (
     <div>
