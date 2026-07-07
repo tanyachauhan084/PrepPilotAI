@@ -9,6 +9,35 @@ const Step3Report = ({report}) => {
       </div>
     );
   }
+
+
+
+  const {
+
+    finalScore=0,
+    confdence=0,
+    communication=0,
+    correctness=0,
+    questionWiseScore=[]
+  } = report;
+
+
+const questionScroeData = questionWiseScore.map((score, index)=>({
+
+  name: `Q${index+1}`,
+
+  score:score.score ||0
+})  )
+
+
+  const skills = [
+    { label: "Confidence", value: confidence },
+    { label: "Communication", value: communication },
+    { label: "Correctness", value: correctness },
+  ];
+
+  
+
   return (
     <div>
 
