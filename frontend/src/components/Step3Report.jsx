@@ -14,15 +14,15 @@ const Step3Report = ({report}) => {
 
   const {
 
-    finalScore=0,
-    confdence=0,
+    finalScore=0,  
+    confidence=0,
     communication=0,
     correctness=0,
     questionWiseScore=[]
   } = report;
 
 
-const questionScroeData = questionWiseScore.map((score, index)=>({
+const questionScoreData = questionWiseScore.map((score, index)=>({
 
   name: `Q${index+1}`,
 
