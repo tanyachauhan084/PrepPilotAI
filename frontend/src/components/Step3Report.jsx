@@ -167,7 +167,8 @@ const questionScoreData = questionWiseScore.map((score, index)=>({
     fillColor: [249, 250, 251],
   },
 });
-    };
+  doc.save("AI_Interview_Report.pdf");
+};
 
 
   return (
