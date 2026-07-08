@@ -206,7 +206,7 @@ return ()=>clearInterval(timer);
   useEffect(()=>{
 
     if(!isIntroPhase && currentQuestion){
-      setTimeLeft(currentQuestion.timeLeft ||  60);
+      setTimeLeft(currentQuestion.timeLimit ||  60);
     }
   },  [currentIndex]);
 
@@ -445,7 +445,7 @@ useEffect(()=>{
       
                   <div className="flex justify-center">
       
-                    <Timer timeLeft={timeLeft} totalTime= {currentQuestion?.timeLeft || 60} />
+                    <Timer timeLeft={timeLeft} totalTime= {currentQuestion?.timeLimit || 60} />
                   </div>
 
           <div className="h-px bg-gray-200"></div>
