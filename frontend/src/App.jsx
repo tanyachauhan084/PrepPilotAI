@@ -17,7 +17,7 @@ import Pricing from './pages/Pricing'
 
 
 
-export const serverUrl= "http://localhost:8880"
+export const serverUrl= "https://preppilot-ai-o93d.onrender.com"
 
 const App = () => {
 
