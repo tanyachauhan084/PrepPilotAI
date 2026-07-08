@@ -20,6 +20,7 @@ server.use(express.static("public"))
 //cross-origin configuration//
 server.use(cors({
     origin:"https://preppilotai-client.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials:true
    
 }))
