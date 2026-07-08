@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { setUserData } from './redux/userSlice'
 import InterviewPage from './pages/InterviewPage'
 import InterviewReport from './pages/InterviewReport'
+import Pricing from './pages/Pricing'
 
 
 
@@ -59,9 +60,7 @@ const App = () => {
 <Route path='/interview' element= {<InterviewPage/>}/>
 
  <Route path='/history' element={<InterviewHistory/>}/>
-{/* 
-<Route path='/pricing' element={<Pricing/>}/> */} 
-
+<Route path='/pricing' element={<Pricing/>}/>
 <Route path='/report/:id' element={<InterviewReport/>}/>
 
 
